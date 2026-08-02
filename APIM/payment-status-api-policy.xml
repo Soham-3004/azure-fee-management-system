@@ -1,0 +1,16 @@
+<policies>
+    <inbound>
+        <base />
+        <set-backend-service id="apim-generated-policy" backend-id="fee-management-api-3004" />
+        <rate-limit calls="10" renewal-period="60" />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>

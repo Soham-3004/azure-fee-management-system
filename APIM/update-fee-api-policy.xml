@@ -1,0 +1,26 @@
+<policies>
+    <inbound>
+        <base />
+        <set-backend-service id="apim-generated-policy" backend-id="fee-management-api-3004" />
+        <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized - Valid Microsoft Entra token required" require-scheme="Bearer">
+            <openid-config url="https://login.microsoftonline.com/d6860af3-6c71-4684-a26f-5ce460d56c94/v2.0/.well-known/openid-configuration" />
+            <audiences>
+                <audience>16f8bc2b-59e1-4cd4-87f2-da37f6b21210</audience>
+            </audiences>
+            <required-claims>
+                <claim name="roles" match="any">
+                    <value>Admin</value>
+                </claim>
+            </required-claims>
+        </validate-jwt>
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
